@@ -38,10 +38,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">작동 원리?</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">잘 어울리는 기준?</a>
+                            <a class="nav-link" href="whylongorshort.html">잘 어울리는 기준?</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">넌 왜 이런걸 만들었니?</a>
@@ -54,12 +51,12 @@
         <section class="email">
             <a
                 class="email"
-                href="https://long-or-short-njxsg.run.goorm.io/long_or_short/index.html"
-                >E-mail로 건의사항을 보내주세요!(보내기)</a
+                href="https://mail.google.com/mail"
+                >E-mail로 건의사항을 보내주세요!(minccc42710@gmail.com)</a
             >
         </section>
         <section class="section">
-            <h1 class="title">단발 테스트(여자)</h1>
+            <h1 class="title">단발 미모 측정기(여자)</h1>
             <h2 class="subtitle">
                 한 번씩 오는 단발충동, 나는 단발형? 장발형? 확실히 검사받고 결정하자!
             </h2>
@@ -80,50 +77,33 @@
                 <div class="drag-text">
                     <img src="img/character.png" class="mt-5 pt-5 upload" />
                     <h3 class="pt-4 upload-text">
-                        이곳을 눌러<br />얼굴 사진을 업로드해주세요<br /><br />
-                        <h5>* 정면 사진이 정확합니다 *</h5>
+                        이곳을 눌러<br/>얼굴 사진을 업로드해주세요<br/><br/>
+                        <h5>* 양 어깨가 조금 나올 정도의 정면 사진이 정확합니다 *</h5>
                     </h3>
                     <br />
                 </div>
             </div>
             <div class="file-upload-content">
-                <img class="file-upload-image" id="faceimage" src="#" alt="your image" />
+                <img class="file-upload-image" id="faceimage" src="#" alt="your image" /><br><br>
+                <div id="loading">측정 중</div>
                 <p class="result-Message"></p>
+                <a class = "whylongorshort" href="whylongorshort.html">측정 기준</a>
                 <!-- 결과값 -->
-
-                <div id="label-container">
-                    <canvas id="OutputChart"></canvas>
+                
+                <div id="label-container" class = "label-container">
+                    <canvas class = "OutputChart" id="OutputChart" style = "center"></canvas>
                 </div>
                 <div class="image-title-wrap"><!-- Go to www.addthis.com/dashboard to customize your tools --> <div class="addthis_inline_share_toolbox"></div>
                     <button type="button" onclick="removeUpload()" class="remove-image">
-                        재업로드 <span class="image-title">Uploaded Image</span>
+                        재업로드
                     </button>
                 </div>
             </div>
         </div>
         <div id="webcam-container"></div>
-        <div id="disqus_thread"></div>
-        <script>
-            /**
-             *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-             *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-            /*
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-            (function () {
-                // DON'T EDIT BELOW THIS LINE
-                var d = document,
-                    s = d.createElement('script');
-                s.src = 'https://seunghwan1.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        </script>
 
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
         <script>
             function readURL(input) {
                 if (input.files && input.files[0]) {
@@ -131,7 +111,7 @@
 
                     reader.onload = function (e) {
                         $('.image-upload-wrap').hide();
-
+                        $('#loading').show();
                         $('.file-upload-image').attr('src', e.target.result);
                         $('.file-upload-content').show();
 
@@ -141,17 +121,20 @@
                     reader.readAsDataURL(input.files[0]);
                     init().then(() => {
                         predict();
+                        $('#loading').hide();
                     });
                     //init().then은 init이후에 시행되는 것
                 } else {
                     removeUpload();
                 }
             }
-
+            
+            
             function removeUpload() {
                 $('.file-upload-input').replaceWith($('.file-upload-input').clone());
                 $('.file-upload-content').hide();
                 $('.image-upload-wrap').show();
+                $('.OutputChart').replaceWith($('.OutputChart').clone());
             }
             $('.image-upload-wrap').bind('dragover', function () {
                 $('.image-upload-wrap').addClass('image-dropping');
@@ -170,8 +153,7 @@
             // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
             // the link to your model provided by Teachable Machine export panel
-            const URL = 'https://teachablemachine.withgoogle.com/models/MYz_3geNr/';
-
+            const URL = "https://teachablemachine.withgoogle.com/models/MYz_3geNr/";
             let model, webcam, labelContainer, maxPredictions;
 
             // Load the image model and setup the webcam
@@ -215,7 +197,7 @@
                         break;
                         
                     default:
-                        resultMessage = '흠,, 둘 다 괜찮네요!!';
+                        resultMessage = '둘 다 정말 어울리네요!';
                         prediction[0].className = '단발';
                         prediction[1].className = '장발';
                         break;
@@ -223,9 +205,9 @@
                 }
                 //         결과값
                 $('.result-Message').html(resultMessage);
-
+                var OutputChart;
                 var ctx = document.getElementById('OutputChart').getContext('2d');
-                var OutputChart = new Chart(ctx, {
+                OutputChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
                         labels: [prediction[0].className, prediction[1].className],

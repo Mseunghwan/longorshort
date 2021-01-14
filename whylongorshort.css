@@ -191,32 +191,7 @@ body {
   animation: spin 1s ease-in-out infinite;
   -webkit-animation: spin 1s ease-in-out infinite;
 }
-.why1, .why2, .why3, .why4{
-    padding-left: 20px;
-    font-size: 1.3rem;
-}
-.reason{
-    padding-left:20px;
-    font-size: 1rem;
-}
-.email{
-    font-family: "jua";
-    text-align: right;
-    font-size: 0.9rem;
-	line-height: 1.71;
-    padding-right: 10px;
-	color : #35465d;
-    text-decoration: none;
-    
-}
-.example .whylongorshort{
-    font-family: "jua";
-	color : #808080;
-    text-decoration: none;
-}
-.end{
-    padding-top:50px;
-}
+
 @keyframes spin {
   to { -webkit-transform: rotate(360deg); }
 }
