@@ -187,13 +187,13 @@
                 var resultMessage;
                 switch (prediction[0].className) {
                     case 'shortcut':
-                        resultMessage = '단발이 잘 어울려요!';
+                        resultMessage = '단발이 찰떡인 스타일이네요! 한번 고민해 보는게 좋겠어요';
                         prediction[0].className = '단발';
                         prediction[1].className = '장발';
                         break;
 
                     case 'longcut':
-                        resultMessage = '단발, 다시 생각해봐요!';
+                        resultMessage = '단발보단 장발이 더 적합한 것 같네요, 단발 고민중이시라면 자르기전 한번만 더 고민해봐요!';
                         prediction[0].className = '장발';
                         prediction[1].className = '단발';
                         break;
