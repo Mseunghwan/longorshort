@@ -1,10 +1,7 @@
 # goormIDE
 Welcome to goormIDE!
 
-goormIDE is a powerful cloud IDE service to maximize productivity for developers and teams.  
-**DEVELOP WITH EXCELLENCE**  
-
-`Happy coding! The goormIDE team`
+goormIDE is a powerful cloud IDE service to maximize productivity for developers and teams. 
 
 
 ## 🔧 Tip & Guide
